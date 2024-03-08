@@ -1,14 +1,15 @@
 import uuid
 from datetime import datetime
-from sqlalchemy import Column, DateTime, String, Boolean
-from src.database import ModelBase
+from sqlalchemy import Boolean, Column, DateTime, String
+from src.database import db
 
-class User(ModelBase):   
+class User(db.Model):
     __tablename__ = "users"
 
-    id = Column(String(length=36), default=lambda: str(uuid.uuid4()), primary_key=True)
-    first_name = Column(String(length=255))
-    last_name = Column(String(length=255))
+    id = Column(String(36), default=lambda: str(uuid.uuid4()), primary_key=True)
+    first_name = Column(String(255))
+    last_name = Column(String(255))
+    email = Column(String(225))
     status = Column(Boolean)
 
     created_at = Column(DateTime, default=datetime.utcnow)
